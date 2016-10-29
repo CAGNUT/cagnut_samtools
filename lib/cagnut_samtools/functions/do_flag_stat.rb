@@ -7,6 +7,7 @@ module CagnutSamtools
     def_delegators :'CagnutSamtools.config', :samtools_path
 
     def initialize opts = {}
+      @order = sprintf '%02i', opts[:order]
       @job_name = "#{prefix_name}_doFlagStat_#{sample_name}"
       @input = opts[:input].nil? ? "#{opts[:dirs][:input]}/#{sample_name}_markdup.bam" : opts[:input]
       @output = "#{opts[:dirs][:output]}/#{sample_name}_merged_markdup.flagstat"
@@ -28,7 +29,7 @@ module CagnutSamtools
     end
 
     def generate_script
-      script_name = 'samtools_do_flag_stat'
+      script_name = "#{@order}_samtools_do_flag_stat"
       file = File.join jobs_dir, "#{script_name}.sh"
       File.open(file, 'w') do |f|
         f.puts <<-BASH.strip_heredoc

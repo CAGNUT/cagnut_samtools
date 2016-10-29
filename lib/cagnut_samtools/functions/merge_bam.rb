@@ -7,6 +7,7 @@ module CagnutSamtools
     def_delegators :'CagnutSamtools.config', :samtools_path
 
     def initialize opts = {}
+      @order = sprintf '%02i', opts[:order]
       @sam_dir = opts[:dirs][:input]
       @bam_dir = opts[:dirs][:output]
       @job_name = "#{prefix_name}_mgBam_#{sample_name}"
@@ -31,7 +32,7 @@ module CagnutSamtools
     end
 
     def generate_script
-      script_name = 'samtools_merge_bam'
+      script_name = "#{@order}_samtools_merge_bam"
       file = File.join jobs_dir, "#{script_name}.sh"
       path = File.expand_path '../templates/merge_bam.sh', __FILE__
       template = Tilt.new path
