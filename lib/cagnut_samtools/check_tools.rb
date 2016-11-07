@@ -2,8 +2,8 @@ module CagnutSamtools
   module CheckTools
     def check_tool tools_path, refs
       super if defined?(super)
-      check_samtools tools_path['samtools']
-      check_samtools_index refs['ref_fasta']
+      ver = check_samtools tools_path['samtools']
+      check_samtools_index refs['ref_fasta'] if !ver.blank?
     end
 
     def check_samtools path

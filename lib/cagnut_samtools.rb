@@ -12,5 +12,6 @@ module CagnutSamtools
 end
 
 require 'cagnut_samtools/configuration'
+require 'cagnut_samtools/check_tools'
 require 'cagnut_samtools/base'
 require 'cagnut_samtools/util'
