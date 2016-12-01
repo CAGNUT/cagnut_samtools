@@ -44,7 +44,7 @@ then
 fi
 
 #{samtools_path} index #{output} #{run_local}
-mv #{bam_dir}/#{output}.bai #{output_bai}
+mv #{output}.bai #{output_bai}
 echo "#{script_name} is finished at $(date +%Y%m%d%H%M%S)" >> "#{jobs_dir}/finished_jobs"
 
 exit $EXITSTATUS
